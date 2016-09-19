@@ -1,0 +1,25 @@
+---
+driver:
+  name: docker 
+  customize:
+    memory: '512'
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-xenial
+    driver_config:
+      image: ubuntu:xenial
+      forward: 80
+  - name: ubuntu-trusty
+    driver_config:
+      image: ubuntu:14.04
+      forward: 80
+
+suites:
+  - name: php7.0-apache2-fpm
+    run_list:
+      - recipe[php7.0-apache2-fpm]
+    attributes:
+        php7.0-apache2-fpm: {'kitchen': true}

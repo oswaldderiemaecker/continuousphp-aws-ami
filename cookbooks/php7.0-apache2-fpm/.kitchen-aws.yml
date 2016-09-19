@@ -1,0 +1,31 @@
+---
+driver:
+  name: ec2
+  region: us-east-1
+  require_chef_omnibus: true
+  associate_public_ip: true
+  aws_ssh_key_id: key_pair
+  security_group_ids: ["sg-00000"]
+  interface: dns
+
+transport:
+  ssh_key: ~/.ssh/key_pair.pem
+  connection_timeout: 10
+  connection_retries: 5
+  username: ubuntu
+
+platforms:
+  - name: ubuntu-xenial-aws
+    driver:
+      image_id: ami-2ef48339
+      instance_type: t2.micro
+  - name: ubuntu-trusty-aws
+    driver:
+      image_id: ami-d05e75b8
+      instance_type: t2.micro
+suites:
+  - name: php7.0-apache2-fpm
+    run_list:
+      - recipe[php7.0-apache2-fpm]
+    attributes:
+        php7.0-apache2-fpm: {'kitchen': true}

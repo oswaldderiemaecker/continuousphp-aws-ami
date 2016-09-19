@@ -1,0 +1,1 @@
+python_pip 'https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz'
