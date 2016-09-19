@@ -1,0 +1,1 @@
+# continuousphp-aws-ami
